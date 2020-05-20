@@ -1,3 +1,4 @@
+{{-- @dd($errors); --}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,10 +18,16 @@
                     <div class="form-group">
                         <label for="title">Post Title</label>
                         <input type="text" class="form-control" name="title" placeholder="Post Title">
+                        @error('title')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="author">Post Author</label>
                         <input type="text" class="form-control" name="author" placeholder="Post Author">
+                        @error('author')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="img">Post IMG</label>
@@ -29,6 +36,9 @@
                     <div class="form-group">
                         <label for="body">Textarea</label>
                         <textarea class="form-control" name="body" rows="3"></textarea>
+                        @error('text')
+                        <div class="alert alert-danger">{{ $message }}</divdiv>
+                        @enderror
                     </div>
                     <div class="text-center">
                         <div class="form-check form-check-inline">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -51,9 +52,27 @@ class PostController extends Controller
         $data = $request->all();
         $data['slug'] = Str::slug($data['title'], '-');
         // dd($data);
+
+        $validator = Validator::make($data, [
+            'title' => 'required|string|max:150',
+            'author' => 'required|string|max:50',
+            'body' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('posts/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
         $post = new Post;
         $post->fill($data);
-        $post->save();
+        $saved = $post->save();
+        if (!$saved) {
+            dd('ERRORE DI SALVATAGGIO DATI');
+        }
+
+        return redirect()->route('posts.show', $post->id);
     }
 
     /**
@@ -64,7 +83,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        dd($id);
     }
 
     /**
