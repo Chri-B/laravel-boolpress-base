@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-12">
                 <h2>{{$post->title}}</h2>
-                <small>Scritto da {{$post->author}}</small>
+                <small>Scritto da <span class="font-italic">{{$post->author}}</span></small>
                 <div>
                     {{$post->body}}
                 </div>
