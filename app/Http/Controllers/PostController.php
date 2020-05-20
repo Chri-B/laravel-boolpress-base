@@ -20,6 +20,12 @@ class PostController extends Controller
         // , compact('$posts')
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    // funzione che filtra i post restituendo solo i post pubblicati
     public function published()
     {
         //
