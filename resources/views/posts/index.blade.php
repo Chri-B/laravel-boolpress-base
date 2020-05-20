@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <body>
+    {{-- @dd($posts); --}}
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -18,18 +19,22 @@
                     </thead>
                     <tbody>
                         @foreach ($posts as $post)
-                            <h2>{{$post->title}}</h2>
-                            <h4>{{$post->author}}</h4>
-                            <small>{{$post->created_at}}</small>
+                            <tr>
+                                <td>
+                                    <a href="{{route('posts.show', $post->id)}}">{{$post->title}}</a>
+                                </td>
+                                <td>
+                                    Scritto da {{$post->author}}
+                                </td>
+                            </tr>
                         @endforeach
-                        {{-- @foreach ($articles as $article)
-                        <tr>
-                            <td><a href="{{route('articles.show', $article->slug)}}">{{$article->title}}</a></td>
-                            <td>Scritto da {{$article->author}}</td>
-                        </tr>
-                        @endforeach --}}
                     </tbody>
                 </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <a href="{{route('posts.create')}}" class="btn btn-dark btn-lg btn-block active" role="button" aria-pressed="true">CREATE NEW POST</a>
             </div>
         </div>
     </div>

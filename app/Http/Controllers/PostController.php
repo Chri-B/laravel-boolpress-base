@@ -83,7 +83,13 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        dd($id);
+        $post = Post::find($id);
+        // dd($post);
+        if (empty($post)) {
+            abort('404');
+        }
+
+        return view('posts.show', compact('post'));
     }
 
     /**
@@ -94,7 +100,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
