@@ -21,10 +21,10 @@
                         @foreach ($posts as $post)
                             <tr>
                                 <td>
-                                    <a href="{{route('posts.show', $post->id)}}">{{$post->title}}</a>
+                                    <a href="{{route('posts.show', $post->slug)}}">{{$post->title}}</a>
                                 </td>
                                 <td>
-                                    Scritto da {{$post->author}}
+                                    Scritto da <span class="font-italic">{{$post->author}}</span>
                                 </td>
                             </tr>
                         @endforeach
@@ -35,6 +35,7 @@
         <div class="row">
             <div class="col-12">
                 <a href="{{route('posts.create')}}" class="btn btn-dark btn-lg btn-block active" role="button" aria-pressed="true">CREATE NEW POST</a>
+                <a href="{{route('posts.published')}}" class="btn btn-success btn-lg btn-block active" role="button" aria-pressed="true">PUBLISHED POSTS</a>
             </div>
         </div>
     </div>

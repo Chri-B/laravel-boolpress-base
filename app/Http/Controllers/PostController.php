@@ -50,7 +50,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $data['slug'] = Str::slug($data['title'], '-');
+        $data['slug'] = Str::slug($data['title'], '-') . rand(1, 100);
         // dd($data);
 
         $validator = Validator::make($data, [
@@ -72,7 +72,7 @@ class PostController extends Controller
             dd('ERRORE DI SALVATAGGIO DATI');
         }
 
-        return redirect()->route('posts.show', $post->id);
+        return redirect()->route('posts.show', $post->slug);
     }
 
     /**
@@ -81,9 +81,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $post = Post::find($id);
+        // $post = Post::find($id);
+        $post = Post::where('slug', $slug)->first();
         // dd($post);
         if (empty($post)) {
             abort('404');

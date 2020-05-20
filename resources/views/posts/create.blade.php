@@ -58,7 +58,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <a href="{{route('posts.index')}}" class="btn btn-dark btn-lg btn-block active" role="button" aria-pressed="true">HOME</a>
+                <a href="{{route('posts.index')}}" class="btn btn-light btn-lg btn-block active" role="button" aria-pressed="true">HOME</a>
             </div>
         </div>
     </div>

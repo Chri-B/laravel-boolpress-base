@@ -7,11 +7,37 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <body>
-    <h1>Only Published Posts</h1>
-    @foreach ($publishedPosts as $publishedPost)
-        <h2>{{$publishedPost->title}}</h2>
-        <h4>{{$publishedPost->author}}</h4>
-        <small>{{$publishedPost->created_at}}</small>
-    @endforeach
+    {{-- @dd($publishedPosts); --}}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center">Published Posts</h1>
+                <table class="table">
+                    <thead>
+                        <th>Titolo</th>
+                        <th>Autore</th>
+                    </thead>
+                    <tbody>
+                        @foreach ($publishedPosts as $post)
+                            <tr>
+                                <td>
+                                    <a href="{{route('posts.show', $post->id)}}">{{$post->title}}</a>
+                                </td>
+                                <td>
+                                    Scritto da <span class="font-italic">{{$post->author}}</span>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <a href="{{route('posts.index')}}" class="btn btn-light btn-lg btn-block active" role="button" aria-pressed="true">HOME</a>
+                <a href="{{route('posts.create')}}" class="btn btn-dark btn-lg btn-block active" role="button" aria-pressed="true">CREATE NEW POST</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
