@@ -21,7 +21,7 @@
                         @foreach ($publishedPosts as $post)
                             <tr>
                                 <td>
-                                    <a href="{{route('posts.show', $post->id)}}">{{$post->title}}</a>
+                                    <a href="{{route('posts.show', $post->slug)}}">{{$post->title}}</a>
                                 </td>
                                 <td>
                                     Scritto da <span class="font-italic">{{$post->author}}</span>

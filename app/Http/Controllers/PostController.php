@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
@@ -50,7 +51,8 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $data['slug'] = Str::slug($data['title'], '-') . rand(1, 100);
+        $now = Carbon::now()->format('Y-m-d-H-m-s');
+        $data['slug'] = Str::slug($data['title'], '-') . $now;
         // dd($data);
 
         $validator = Validator::make($data, [
@@ -60,7 +62,7 @@ class PostController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('posts/create')
+            return redirect()->route('posts.create')
                         ->withErrors($validator)
                         ->withInput();
         }

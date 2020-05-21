@@ -14,7 +14,8 @@
                 <h2>{{$post->title}}</h2>
                 <small>Scritto da <span class="font-italic">{{$post->author}}</span></small>
                 <div>
-                    {{$post->body}}
+                    {{-- {{$post->body}} --}}
+                    {!!$post->body !!}
                 </div>
                 <div class="text-center">
                     <img src="{{$post->img}}" alt="{{$post->title}}">
