@@ -16,7 +16,7 @@
                     <thead>
                         <th>Titolo</th>
                         <th>Autore</th>
-                        <th colspan="3">Action</th>
+                        <th colspan="2">Action</th>
                     </thead>
                     <tbody>
                         @foreach ($posts as $post)
@@ -28,7 +28,14 @@
                                     Scritto da <span class="font-italic">{{$post->author}}</span>
                                 </td>
                                 <td>
-                                    <a href="{{route('posts.edit', $post->id)}}">EDIT</a>
+                                    <a href="{{route('posts.edit', $post->id)}}" class="btn btn-info" role="button" aria-pressed="true">EDIT</a>
+                                </td>
+                                <td>
+                                    <form action="{{route('posts.destroy', $post->id)}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger" type="submit">DELETE</button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

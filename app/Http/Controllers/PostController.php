@@ -59,6 +59,7 @@ class PostController extends Controller
             'title' => 'required|string|max:150',
             'author' => 'required|string|max:50',
             'body' => 'required|string',
+            'published' => 'required|boolean'
         ]);
 
         if ($validator->fails()) {
@@ -126,6 +127,8 @@ class PostController extends Controller
         }
 
         $data = $request->all();
+        $now = Carbon::now()->format('Y-m-d-H-m-s');
+        $data['slug'] = Str::slug($data['title'], '-') . $now;
         // dd($data);
 
         $validator = Validator::make($data, [
@@ -141,9 +144,9 @@ class PostController extends Controller
         }
 
         $post->fill($data);
-        $saved = $post->save();
-        if (!$saved) {
-            dd('ERRORE DI SALVATAGGIO DATI');
+        $updated = $post->update();
+        if (!$updated) {
+            dd('ERRORE DI AGGIORNAMENTO DATI');
         }
 
         return redirect()->route('posts.show', $post->slug);
@@ -157,6 +160,9 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        $post->delete();
+
+        return redirect()->route('posts.index');
     }
 }
