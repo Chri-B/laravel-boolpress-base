@@ -12,11 +12,11 @@
         <div class="row">
             <div class="col-12">
                 <h1 class="text-center">Published Posts</h1>
-                <table class="table">
-                    <thead>
+                <table class="table table-striped table-hover">
+                    <thead class="thead-dark">
                         <th>Titolo</th>
                         <th>Autore</th>
-                        <th colspan="3">Action</th>
+                        <th colspan="2" class="text-center">Action</th>
                     </thead>
                     <tbody>
                         @foreach ($publishedPosts as $post)
@@ -27,10 +27,10 @@
                                 <td>
                                     Scritto da <span class="font-italic">{{$post->author}}</span>
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <a href="{{route('posts.edit', $post->id)}}" class="btn btn-info" role="button" aria-pressed="true">EDIT</a>
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <form action="{{route('posts.destroy', $post->id)}}" method="POST">
                                         @csrf
                                         @method('DELETE')
