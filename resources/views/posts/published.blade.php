@@ -16,6 +16,7 @@
                     <thead>
                         <th>Titolo</th>
                         <th>Autore</th>
+                        <th colspan="3">Action</th>
                     </thead>
                     <tbody>
                         @foreach ($publishedPosts as $post)
@@ -25,6 +26,9 @@
                                 </td>
                                 <td>
                                     Scritto da <span class="font-italic">{{$post->author}}</span>
+                                </td>
+                                <td>
+                                    <a href="{{route('posts.edit', $post->id)}}">EDIT</a>
                                 </td>
                             </tr>
                         @endforeach
