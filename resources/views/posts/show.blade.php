@@ -13,17 +13,18 @@
             <div class="col-12">
                 <h2>{{$post->title}}</h2>
                 <small>Scritto da <span class="font-italic">{{$post->author}}</span></small>
+                <div class="text-center">
+                    <img src="{{$post->img}}" alt="{{$post->title}}">
+                </div>
                 <div>
                     {{-- {{$post->body}} --}}
                     {!!$post->body !!}
-                </div>
-                <div class="text-center">
-                    <img src="{{$post->img}}" alt="{{$post->title}}">
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
+                <a href="{{route('posts.edit', $post->id)}}" class="btn btn-info btn-lg btn-block active" role="button" aria-pressed="true">EDIT</a>
                 <a href="{{route('posts.index')}}" class="btn btn-light btn-lg btn-block active" role="button" aria-pressed="true">HOME</a>
                 <a href="{{route('posts.create')}}" class="btn btn-dark btn-lg btn-block active" role="button" aria-pressed="true">CREATE NEW POST</a>
             </div>
