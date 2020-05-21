@@ -35,7 +35,7 @@
                     </div>
                     <div class="form-group">
                         <label for="body">Textarea</label>
-                        <textarea class="form-control" name="body" rows="3">{{ $post->author }}</textarea>
+                        <textarea class="form-control" name="body" rows="3">{{ $post->body }}</textarea>
                         @error('body')
                         <div class="alert alert-danger"> {{ $message }} </div>
                         @enderror
