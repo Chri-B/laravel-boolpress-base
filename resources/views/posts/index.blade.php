@@ -11,9 +11,13 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center">HOME - All Posts</h1>
+                <h1>HOME - All Posts</h1>
+                <div class="pagination">
+                    {{ $posts->links() }}
+                </div>
                 <table class="table table-striped table-hover">
                     <thead class="thead-dark">
+                        <th>ID</th>
                         <th>Titolo</th>
                         <th>Autore</th>
                         <th colspan="2" class="text-center">Action</th>
@@ -21,6 +25,9 @@
                     <tbody>
                         @foreach ($posts as $post)
                             <tr>
+                                <td>
+                                    <span>{{$post->id}}</span>
+                                </td>
                                 <td>
                                     <a href="{{route('posts.show', $post->slug)}}">{{$post->title}}</a>
                                 </td>
@@ -41,6 +48,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="pagination">
+                    {{ $posts->links() }}
+                </div>
             </div>
         </div>
         <div class="row">

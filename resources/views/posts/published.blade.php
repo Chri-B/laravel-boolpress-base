@@ -11,9 +11,10 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center">Published Posts</h1>
+                <h1>Published Posts</h1>
                 <table class="table table-striped table-hover">
                     <thead class="thead-dark">
+                        <th>ID</th>
                         <th>Titolo</th>
                         <th>Autore</th>
                         <th colspan="2" class="text-center">Action</th>
@@ -21,6 +22,9 @@
                     <tbody>
                         @foreach ($publishedPosts as $post)
                             <tr>
+                                <td>
+                                    <span>{{$post->id}}</span>
+                                </td>
                                 <td>
                                     <a href="{{route('posts.show', $post->slug)}}">{{$post->title}}</a>
                                 </td>

@@ -14,7 +14,7 @@ class PostsTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i=0; $i < 15; $i++) {
+        for ($i=0; $i < 20; $i++) {
             $post = new Post;
             $now = Carbon::now()->format('Y-m-d-H-m-s');
             $post->title = $faker->sentence(5, true);

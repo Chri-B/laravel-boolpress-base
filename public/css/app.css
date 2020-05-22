@@ -10941,3 +10941,7 @@ a.text-dark:focus {
   padding-top: 10px;
 }
 
+.pagination {
+  justify-content: center;
+}
+

@@ -17,7 +17,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        // $posts = Post::all()->sortByDesc('updated_at');
+        $posts = Post::orderBy('updated_at','desc')->paginate('15');
+        //->sortDesc()
+        // dd($posts);
         return view('posts.index', compact('posts'));
     }
 
@@ -28,7 +31,7 @@ class PostController extends Controller
      */
     public function indexPublished()
     {
-        $publishedPosts = Post::where('published', 1)->get();
+        $publishedPosts = Post::where('published', 1)->get()->sortByDesc('updated_at');
         return view('posts.published', compact('publishedPosts'));
     }
 
@@ -145,9 +148,11 @@ class PostController extends Controller
 
         $post->fill($data);
         $updated = $post->update();
-        if (!$updated) {
-            dd('ERRORE DI AGGIORNAMENTO DATI');
-        }
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // if (!$updated) {
+        //     return redirect()->back()->with('status', 'Photo non aggiornata');
+        // } CONTROLLARE INSERIMENTO IN VIEW PRINCIPALE CON @ERROR
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         return redirect()->route('posts.show', $post->slug);
     }
