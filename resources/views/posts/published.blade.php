@@ -67,12 +67,12 @@
 @section('footer')
     <div class="container">
         <div class="row">
-            <div class="col-4"></div>
-            <div class="col-4">
+            <div class="col"></div>
+            <div class="col-12 col-lg-4">
                 <a href="{{route('posts.create')}}" class="btn btn-success btn-lg btn-block active" role="button" aria-pressed="true">CREATE NEW POST</a>
                 <a href="{{route('posts.index')}}" class="btn btn-light btn-lg btn-block active" role="button" aria-pressed="true">HOME</a>
             </div>
-            <div class="col-4"></div>
+            <div class="col"></div>
         </div>
     </div>
 @endsection
