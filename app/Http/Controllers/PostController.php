@@ -31,7 +31,7 @@ class PostController extends Controller
      */
     public function indexPublished()
     {
-        $publishedPosts = Post::where('published', 1)->get()->sortByDesc('updated_at');
+        $publishedPosts = Post::where('published', 1)->orderBy('updated_at','desc')->paginate('15');
         return view('posts.published', compact('publishedPosts'));
     }
 
@@ -74,11 +74,14 @@ class PostController extends Controller
         $post = new Post;
         $post->fill($data);
         $saved = $post->save();
-        if (!$saved) {
-            dd('ERRORE DI SALVATAGGIO DATI');
+        // if (!$saved) {
+        //     dd('ERRORE DI SALVATAGGIO DATI');
+        // }
+        if(!$saved) {
+            return redirect()->back()->with('status', 'Post non salvato :(');
+        } else {
+            return redirect()->route('posts.show', $post->slug)->with('statusOk', 'Post salvato con ID: ' . $post->id);
         }
-
-        return redirect()->route('posts.show', $post->slug);
     }
 
     /**
@@ -148,13 +151,11 @@ class PostController extends Controller
 
         $post->fill($data);
         $updated = $post->update();
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        // if (!$updated) {
-        //     return redirect()->back()->with('status', 'Photo non aggiornata');
-        // } CONTROLLARE INSERIMENTO IN VIEW PRINCIPALE CON @ERROR
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-        return redirect()->route('posts.show', $post->slug);
+        if(!$updated) {
+            return redirect()->back()->with('status', 'Post non aggiornato :(');
+        } else {
+            return redirect()->route('posts.show', $post->slug)->with('statusOk', 'Post con ID: ' . $id . ' aggiornato!');
+        }
     }
 
     /**
@@ -165,9 +166,14 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
+        // dd($id);
         $post = Post::find($id);
-        $post->delete();
+        $delete = $post->delete();
 
-        return redirect()->route('posts.index');
+        if(!$delete) {
+            return redirect()->back()->with('status', 'Post non eliminato :(');
+        } else {
+            return redirect()->route('posts.index')->with('statusOk', 'Post con ID: '. $id .' eliminato!');
+        }
     }
 }
