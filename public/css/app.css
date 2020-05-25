@@ -10933,3 +10933,32 @@ a.text-dark:focus {
   }
 }
 
+.container {
+  padding: 10px 0;
+}
+
+.row {
+  padding: 10px 0;
+}
+
+.pagination {
+  justify-content: center;
+}
+
+footer form {
+  padding: 8px 0;
+}
+
+img {
+  margin: 40px 0;
+}
+
+.form-published {
+  margin-bottom: 15px;
+}
+
+.red-italic {
+  font-style: italic;
+  color: red;
+}
+

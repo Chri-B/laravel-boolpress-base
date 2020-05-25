@@ -3,6 +3,13 @@
 @section('content')
     <div class="container">
         <div class="row">
+            <div class="col"></div>
+            <div class="col-12 col-lg-4">
+                <a href="{{route('admin.users.create')}}" class="btn btn-success btn-lg btn-block active" role="button" aria-pressed="true">CREATE NEW USER</a>
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row">
             <div class="col-12">
                 {{-- <div class="pagination">
                     {{ $users->links() }}

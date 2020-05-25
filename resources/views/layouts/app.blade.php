@@ -73,6 +73,7 @@
         </nav>
 
         <main class="py-4">
+            @include('partials.status')
             @yield('content')
         </main>
     </div>
