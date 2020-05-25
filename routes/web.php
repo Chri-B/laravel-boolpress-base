@@ -13,10 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'PostController@index')->name('posts.index');
 Route::get('/published', 'PostController@IndexPublished')->name('posts.published');
 Route::resource('posts', 'PostController');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::prefix('admin')
+->namespace('Admin')
+->name('admin.')
+->middleware('auth')
+->group(function () {
+    Route::resource('users', 'UserController');
+});
